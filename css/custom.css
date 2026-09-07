@@ -750,3 +750,10 @@ body[data-page="home"] .hero-float{display:none!important}
     resize:vertical;
   }
 }
+
+
+/* FINAL MOBILE ORDER REFINEMENT — Our Perspective */
+@media (max-width: 991.98px){
+  body[data-page="home"] .home-perspective-row > .col-lg-7{order:1;}
+  body[data-page="home"] .home-perspective-row > .col-lg-5{order:2;}
+}
