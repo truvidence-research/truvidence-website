@@ -32,23 +32,13 @@
       card.addEventListener('mouseleave', () => card.style.transform='');
     });
   }
-  // Contact form: validate and open a populated email draft; no server endpoint is invented.
+  // Contact form: validate fields, then allow the form to submit normally to its configured endpoint.
   const form=document.getElementById('contactForm');
   form?.addEventListener('submit', e => {
-    e.preventDefault();
-    if (!form.checkValidity()) { form.classList.add('was-validated'); return; }
-    const data=new FormData(form);
-    const subject=encodeURIComponent('Truvidence research enquiry');
-    const lines=[
-      `Title: ${data.get('title')||''}`,
-      `First Name: ${data.get('firstName')||''}`,
-      `Last Name: ${data.get('lastName')||''}`,
-      `Organization: ${data.get('organization')||''}`,
-      `Work Email: ${data.get('workEmail')||''}`,
-      `Area of Enquiry: ${data.get('areaOfEnquiry')||''}`,
-      '', 'Research Need:', data.get('researchNeed')||''
-    ];
-    location.href=`mailto:connect@truvidenceresearch.com?subject=${subject}&body=${encodeURIComponent(lines.join('\n'))}`;
+    if (!form.checkValidity()) {
+      e.preventDefault();
+      form.classList.add('was-validated');
+    }
   });
 })();
 
